@@ -1,0 +1,102 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+.global-con {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.global_box {
+  width: 100%;
+  height: max-content;
+  border-radius: 20px;
+  padding: 20px;
+  margin: 2% auto 1% auto;
+  border: 2px solid darkgray;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  text-align: center;
+}
+.scatter-chart {
+  width: 90%;
+  height: 100%;
+  margin: auto;
+}
+.individual_box {
+  width: 100%;
+  border-radius: 20px;
+  padding: 10px 20px;
+  margin: 2% auto 1% auto;
+  border: 2px solid darkgray;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.pricnciples-con {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  margin: 2% auto;
+}
+.radar-chart {
+  height: max-content;
+  margin: auto;
+}
+/* SortableTable*/
+.sortable-table {
+  width: 100%;
+  margin: 20px auto;
+}
+
+.table-heading {
+  text-align: center;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.table-header {
+  padding: 10px;
+  border: 1.5px solid black;
+  background-color: #f4f4f4;
+  cursor: pointer;
+  text-align: left;
+}
+
+.table-header.sortable:hover {
+  background-color: #e0e0e0;
+}
+
+.table-row {
+  border: 1.5px solid black;
+}
+
+.table-cell {
+  padding: 10px;
+  border: 1.5px solid black;
+}
+
+.table-cell.ellipsis {
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ellipsis:hover{
+  cursor: pointer;
+  text-decoration: underline;
+  font-weight: bold;
+}
