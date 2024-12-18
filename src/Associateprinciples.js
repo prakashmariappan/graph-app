@@ -95,7 +95,7 @@ const Associateprinciples = () => {
 
   return (
     <div className="radar-chart">
-      <h2>Associate Principles Radar Chart</h2>
+      <h2 className='card-title'>Associate Principles Radar Chart</h2>
       {chartData ? (
         <Radar data={chartData} options={options} />
       ) : (

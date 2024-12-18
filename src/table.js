@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as XLSX from 'xlsx';
 
 
 const SortableTable = () => {
   const [tableData, setTableData] = useState([]);
   const [sortConfig, setSortConfig] = useState({ key: 'Year', direction: 'asc' });
+  const [selectedRow, setSelectedRow] = useState(null); // State to store clicked row details
+  const detailsRef = useRef(null); // Reference for the details div
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Fetch the Excel file from the public folder
         const response = await fetch('./data.xlsx');
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -17,11 +18,10 @@ const SortableTable = () => {
 
         const arrayBuffer = await response.arrayBuffer();
         const workbook = XLSX.read(arrayBuffer, { type: 'array' });
-        const sheetName = workbook.SheetNames[0]; // Use the first sheet
+        const sheetName = workbook.SheetNames[0];
         const sheet = workbook.Sheets[sheetName];
         const jsonData = XLSX.utils.sheet_to_json(sheet);
 
-        // Extract relevant columns
         const formattedData = jsonData.map(row => ({
           Title: row['Title'] || '',
           Year: row['Year'] || '',
@@ -29,6 +29,11 @@ const SortableTable = () => {
           LevelOfDevelopment: parseFloat(row['Level of Development']) || 0,
           ProgrammingLanguages: row['Programming Language'] || '',
           ToolUsage: parseFloat(row['Tool Usage']) || 0,
+          Abstract: row['Abstract'] || 'N/A',
+          Contribution: row['Contribution'] || 'N/A',
+          Methodology: row['Methodology'] || 'N/A',
+          ToolsFramework: row['Tools/Framework'] || 'N/A',
+          Results: row['Results'] || 'N/A',
         }));
 
         setTableData(formattedData);
@@ -64,6 +69,13 @@ const SortableTable = () => {
     return Math.max(...tableData.map(row => row[key] || 0));
   };
 
+  const handleRowClick = (row) => {
+    setSelectedRow(row);
+    setTimeout(() => {
+      detailsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 0); // Timeout ensures state is updated before scrolling
+  };
+
   const maxValues = {
     Year: getMaxValue('Year'),
     LevelOfEvaluation: getMaxValue('LevelOfEvaluation'),
@@ -73,7 +85,7 @@ const SortableTable = () => {
 
   return (
     <div className="sortable-table">
-      <h2 className="table-heading">Data Table</h2>
+      <h2 className='card-title'>Data Table</h2>
       <table className="data-table">
         <thead>
           <tr>
@@ -96,7 +108,13 @@ const SortableTable = () => {
         <tbody>
           {tableData.map((row, index) => (
             <tr key={index} className="table-row">
-              <td className="table-cell ellipsis" title={row.Title} >{row.Title}</td>
+              <td 
+                className="table-cell ellipsis clickable" 
+                title={row.Title} 
+                onClick={() => handleRowClick(row)}
+              >
+                {row.Title}
+              </td>
               <td className="table-cell" style={{ backgroundColor: `rgba(173, 216, 230, ${calculateOpacity(row.Year, maxValues.Year)})` }}>{row.Year}</td>
               <td className="table-cell" style={{ backgroundColor: `rgba(144, 238, 144, ${calculateOpacity(row.LevelOfEvaluation, maxValues.LevelOfEvaluation)})` }}>{row.LevelOfEvaluation}</td>
               <td className="table-cell" style={{ backgroundColor: `rgba(255, 182, 193, ${calculateOpacity(row.LevelOfDevelopment, maxValues.LevelOfDevelopment)})` }}>{row.LevelOfDevelopment}</td>
@@ -106,6 +124,18 @@ const SortableTable = () => {
           ))}
         </tbody>
       </table>
+
+      {selectedRow && (
+        <div ref={detailsRef} className="details-popup">
+          <h3>Title: {selectedRow.Title}</h3>
+          <p><strong>Year:</strong> {selectedRow.Year}</p>
+          <p><strong>Abstract:</strong> {selectedRow.Abstract}</p>
+          <p><strong>Contribution:</strong> {selectedRow.Contribution}</p>
+          <p><strong>Methodology:</strong> {selectedRow.Methodology}</p>
+          <p><strong>Tools/Framework:</strong> {selectedRow.ToolsFramework}</p>
+          <p><strong>Results:</strong> {selectedRow.Results}</p>
+        </div>
+      )}
     </div>
   );
 };

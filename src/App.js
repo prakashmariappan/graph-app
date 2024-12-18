@@ -11,15 +11,14 @@ const App = () => {
     <>
     <div className="global-con">
       <div className="global_box">
-        <h2>Scatter Chart: Level of Evaluation vs Level of Development</h2>
+        <h2 className='card-title'>Scatter Chart: Level of Evaluation vs Level of Development</h2>
         <ScatterChart />
       </div>
       <div className="individual_box">
-      <div className='pricnciples-con'>
-        <Associateprinciples />
-        <Highlevelprinciples />
-        </div>
-      
+      <Associateprinciples />
+      </div>
+      <div className="individual_box">
+      <Highlevelprinciples />
       </div>
       <SortableTable />
     </div>

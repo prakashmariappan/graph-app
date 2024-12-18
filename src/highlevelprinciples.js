@@ -95,7 +95,7 @@ const Highlevelpriciples = () => {
 
   return (
     <div className="radar-chart">
-      <h2>High-Level Principles Radar Chart</h2>
+      <h2 className='card-title'>High-Level Principles Radar Chart</h2>
       {chartData ? (
         <Radar data={chartData} options={options} />
       ) : (

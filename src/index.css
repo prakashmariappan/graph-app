@@ -2,7 +2,15 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
+  font-family: "Poppins", sans-serif;
+  line-height: normal;
+  font-weight: normal;
+  text-align: justify;
+}
+.card-title{
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
 }
 .global-con {
   width: 90%;
@@ -14,10 +22,12 @@
 .global_box {
   width: 100%;
   height: max-content;
-  border-radius: 20px;
-  padding: 20px;
+  padding: 15px;
   margin: 2% auto 1% auto;
-  border: 2px solid darkgray;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   justify-items: center;
@@ -25,32 +35,30 @@
   text-align: center;
 }
 .scatter-chart {
-  width: 90%;
-  height: 100%;
+  width: 70%;
+  height: 70%;
   margin: auto;
 }
 .individual_box {
   width: 100%;
   border-radius: 20px;
-  padding: 10px 20px;
+  padding: 15px;
   margin: 2% auto 1% auto;
-  border: 2px solid darkgray;
-  display: flex;
-  flex-direction: column;
-  text-align: left;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  height: max-content;
 }
 
-.pricnciples-con {
-  width: 100%;
+.radar-chart {
+  width: 50%;
+  height: 40%;
+  margin: auto;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  flex-direction: row;
-  margin: 2% auto;
-}
-.radar-chart {
-  height: max-content;
-  margin: auto;
+  flex-direction: column;
+  text-align: center;
 }
 /* SortableTable*/
 .sortable-table {
@@ -58,9 +66,6 @@
   margin: 20px auto;
 }
 
-.table-heading {
-  text-align: center;
-}
 
 .data-table {
   width: 100%;
@@ -73,7 +78,8 @@
   border: 1.5px solid black;
   background-color: #f4f4f4;
   cursor: pointer;
-  text-align: left;
+  text-align: center;
+  font-weight: bold;
 }
 
 .table-header.sortable:hover {
@@ -87,6 +93,7 @@
 .table-cell {
   padding: 10px;
   border: 1.5px solid black;
+  text-align: center;
 }
 
 .table-cell.ellipsis {
@@ -99,4 +106,24 @@
   cursor: pointer;
   text-decoration: underline;
   font-weight: bold;
+  color: #007bff;
+}
+
+.details-popup {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.details-popup h3{
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+strong{
+  font-weight: bold;
+}
+.details-popup p{
+  margin: 10px auto;
 }
